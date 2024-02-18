@@ -16,8 +16,8 @@ pipeline {
         }
          stage('Build docker image') {
             steps {  
-                sh 'docker build -t myimg .'
-                sh 'docker tag myimg:latest madhurisai12/myimages:latest'
+                sh 'docker build -t myimg1 .'
+                sh 'docker tag myimg1:latest madhurisai12/myimagess:latest'
             }
         }
         stage('login to dockerhub') {
@@ -27,12 +27,12 @@ pipeline {
         }
         stage('push image') {
             steps{
-                sh 'docker push madhurisai12/myimages:latest'
+                sh 'docker push madhurisai12/myimagess:latest'
                }
           }
    stage('Deploy') {
             steps{
-                   sh 'docker run -itd --name ourimages -p 8095:8095 madhurisai12/myimages:latest'
+                   sh 'docker run -itd --name ourimagees -p 8096:8096 madhurisai12/myimagess:latest'
                  }
           }   
 }
