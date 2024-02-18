@@ -1,5 +1,8 @@
 pipeline {
     agent any 
+    environment {
+    DOCKERHUB_CREDENTIALS = credentials('docker-mad')
+    }
     stages { 
         stage('SCM Checkout') {
             steps{
@@ -11,5 +14,23 @@ pipeline {
                 sh "mvn clean package"
             }
         }
+         stage('Build docker image') {
+            steps {  
+                sh 'docker build -t myimg .'
+                sh 'docker tag myimg:latest madhurisai12/myimages:latest'
+            }
+        }
+        stage('login to dockerhub') {
+            steps{
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+            }
+        }
+        stage('push image') {
+            steps{
+                sh 'docker push madhurisai12/myimages:latest'
+               }
+          }
+   
     }
+    
 }
