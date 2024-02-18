@@ -32,7 +32,7 @@ pipeline {
           }
    stage('Deploy') {
             steps{
-                   sh 'docker run -itd --name demo2 -p 8090:8090 balu777kb/demo1:latest'
+                   sh 'docker run -itd --name ourimages -p 8090:8090 madhurisai12/myimages:latest'
                  }
           }   
 }
