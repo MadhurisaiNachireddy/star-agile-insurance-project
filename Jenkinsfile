@@ -30,7 +30,18 @@ pipeline {
                 sh 'docker push madhurisai12/myimages:latest'
                }
           }
-   
+   stage('Deploy') {
+            steps{
+                   sh 'docker run -itd --name demo2 -p 8090:8090 balu777kb/demo1:latest'
+                 }
+          }   
+}
+       post {
+            always {
+               sh 'docker logout'
+        }
+    }
+}
     }
     
 }
