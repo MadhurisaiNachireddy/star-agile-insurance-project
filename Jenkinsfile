@@ -1,8 +1,5 @@
 pipeline {
     agent any 
-    environment {
-    DOCKERHUB_CREDENTIALS = credentials('docker-madhuri')
-    }
     stages { 
         stage('SCM Checkout') {
             steps{
