@@ -17,7 +17,7 @@ pipeline {
         stage('Build docker image') {
             steps {  
                 sh 'docker build -t insure .'
-                sh 'docker tag insure:latest madhurisai12/insurance14:latest'
+                sh 'docker tag insure:latest madhurisai12/insurance124:latest'
             }
         }
         stage('login to dockerhub') {
@@ -33,7 +33,7 @@ pipeline {
    
  stage('Deploy') {
             steps{
-                   sh 'docker run -itd --name demo2 -p 8090:8090 madhurisai12/insurance124:latest'
+                   sh 'docker run -itd --name insurance124 -p 8090:8090 madhurisai12/insurance124:latest'
                  }
           }   
 }
